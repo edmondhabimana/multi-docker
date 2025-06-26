@@ -11,12 +11,14 @@ script:
 after_success:
   - docker build -t edmondhabimana/multi-client ./client
   - docker build -t edmondhabimana/multi-nginx ./nginx
-  - docker build -t edmondhabimana/multi-server ./server
+  - docker build -t edmondhabimana/multi-api ./api
   - docker build -t edmondhabimana/multi-worker ./worker
 
 #log in to the docker CLI
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+#take those images and push them to docker hub
   - docker push edmondhabimana/multi-client
   - docker push edmondhabimana/multi-nginx
-  - docker push edmondhabimana/multi-server
+  - docker push edmondhabimana/multi-api
   - docker push edmondhabimana/multi-worker
