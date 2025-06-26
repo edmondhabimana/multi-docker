@@ -22,3 +22,15 @@ after_success:
   - docker push edmondhabimana/multi-nginx
   - docker push edmondhabimana/multi-api
   - docker push edmondhabimana/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "multi-docker"
+  env: "Multi-docker-env"
+  bucket_name: "elasticbeanstalk-us-east-2-619487851628"
+  bucket_path: "docker-multi"
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  on:
+    branch: master
